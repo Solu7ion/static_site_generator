@@ -1,7 +1,8 @@
 from textnode import *
     
 def main():
-    TextNode("This is a text node", "bold", "https://www.boot.def")
+    node = TextNode("This is a text node", "bold", "https://www.boot.def")
+    print(node)
 
 
 if __name__ == "__main__":
