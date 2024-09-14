@@ -24,12 +24,11 @@ class TestHTMLNode(unittest.TestCase):
             {"class": "inner"}
         )
         self.assertEqual(node.__repr__(), "HTMLNode(div, Check test_repr return, children: None, {'class': 'inner'})")
-
-class LeafNode(HTMLNode):
-    def test_to_html(self):
-        node = LeafNode(tag="p", value="This is a paragraph of text.")
-        self.assertEqual('<p>This is a paragraph of text.</p>')
     
-    def test_to_html_props(self):
-        node = LeafNode("a", "Click me!", {"href": "https://www.google.com"})
-        self.assertEqual('<a href="https://www.google.com">Click me!</a>')
+    def test_to_no_children(self):
+        node = LeafNode("p", "Hello, world!")
+        self.assertEqual(node.to_html(), "<p>Hello, world!</p>")
+    
+    def test_to_no_tag(self):
+        node = LeafNode(None, "Hello, world!")
+        self.assertEqual(node.to_html(), "Hello, world!")
