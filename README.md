@@ -35,10 +35,12 @@ http://localhost:8888
 
 ## Markdown file locations
 
+```
 content/
 ├── majesty/
 │ └── index.md
 └── index.md
+```
 
 _content/index.md_
 
