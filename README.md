@@ -100,6 +100,6 @@ print("Rings")
 ## Screenshots
 
 _content/index.md screenshot_
-![Content/index.md](Screenshots/content_index.png)
+![Content/index.md](screenshots/content_index.png)
 _content/majestu/index/md screenshot_
 ![content/majesty/index](screenshots/content_majesty_index.png)
