@@ -1,33 +1,27 @@
 import os
 import shutil
-from textnode import *
 
-def copy_static_files(source_dir, dest_dir):
-    if os.path.exists(dest_dir):
-        shutil.rmtree(dest_dir)
+from copystatic import copy_files_recursive
+from gencontent import generate_pages_recursive
 
-    os.makedirs(dest_dir, exist_ok=True)
 
-    # Рекурсивно скопируем все файлы и поддиректории
-    for item in os.listdir(source_dir):
-        source_path = os.path.join(source_dir, item)
-        dest_path = os.path.join(dest_dir, item)
+dir_path_static = "./static"
+dir_path_public = "./public"
+dir_path_content = "./content"
+template_path = "./template.html"
 
-        # Если это файл, копируем его
-        if os.path.isfile(source_path):
-            shutil.copy(source_path, dest_path)
-            print(f"Copied file: {source_path} -> {dest_path}")
-        # Если это директория, рекурсивно копируем её содержимое
-        elif os.path.isdir(source_path):
-            copy_static_files(source_path, dest_path)
 
 def main():
-    node = TextNode("This is a text node", "bold", "https://www.boot.def")
-    print(node)
+    print("Deleting public directory...")
+    if os.path.exists(dir_path_public):
+        shutil.rmtree(dir_path_public)
 
-    source_directory = "static"
-    destination_directory = "public"
-    copy_static_files(source_directory, destination_directory)
+    print("Copying static files to public directory...")
+    copy_files_recursive(dir_path_static, dir_path_public)
 
-if __name__ == "__main__":
-    main()
+    print("Generating content...")
+    generate_pages_recursive(dir_path_content, template_path, dir_path_public)
+
+
+main()
+
